@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "922224888586",
+    "project_id": "agenmax-52847",
+    "storage_bucket": "agenmax-52847.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922224888586:android:5a61f20f70d41c7ae108f3",
+        "android_client_info": {
+          "package_name": "com.agenmax.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922224888586-rgib75a2fqrqso1gak1q3f9uj2m6nnaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEBS2OmGv_TuvnviqzKjblpSbw-3hzxx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922224888586-rgib75a2fqrqso1gak1q3f9uj2m6nnaf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "922224888586-9flgai9k9kp63fk4h31gfvhqs6sd8ski.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.agenmax"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922224888586:android:1890296767ca7375e108f3",
+        "android_client_info": {
+          "package_name": "com.example.agenmax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922224888586-rgib75a2fqrqso1gak1q3f9uj2m6nnaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEBS2OmGv_TuvnviqzKjblpSbw-3hzxx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922224888586-rgib75a2fqrqso1gak1q3f9uj2m6nnaf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "922224888586-9flgai9k9kp63fk4h31gfvhqs6sd8ski.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.agenmax"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
