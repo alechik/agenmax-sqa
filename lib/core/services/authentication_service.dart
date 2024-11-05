@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../../features/auth/models/user_model.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future<UserModel?> loginUser(String email, String password) async {
     try {
@@ -14,7 +16,6 @@ class AuthenticationService {
       User? firebaseUser = userCredential.user;
 
       if (firebaseUser != null) {
-        // Crear un UserModel a partir de la información del usuario
         return UserModel(
           idUser: firebaseUser.uid,
           username: firebaseUser.displayName ?? 'Usuario',
@@ -39,10 +40,8 @@ class AuthenticationService {
       User? firebaseUser = userCredential.user;
 
       if (firebaseUser != null) {
-        // Actualiza el displayName
         await firebaseUser.updateDisplayName(username);
 
-        // Crear un UserModel a partir de la información del usuario
         return UserModel(
           idUser: firebaseUser.uid,
           username: username,
@@ -59,5 +58,33 @@ class AuthenticationService {
 
   Future<void> logoutUser() async {
     await _firebaseAuth.signOut();
+  }
+
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return null; // El usuario canceló el inicio de sesión
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
+      User? firebaseUser = userCredential.user;
+
+      return firebaseUser != null
+          ? UserModel(
+              idUser: firebaseUser.uid,
+              username: firebaseUser.displayName ?? 'Google User',
+              email: firebaseUser.email ?? '',
+            )
+          : null;
+    } catch (e) {
+      print("Error al iniciar sesión con Google: $e");
+      return null;
+    }
   }
 }

@@ -34,6 +34,8 @@ dependencies:
   firebase_core: ^2.7.0  # Inicializa Firebase
   firebase_auth: ^4.4.0  # Autenticación de Firebase
   cloud_firestore: ^4.7.1 # Firestore para almacenamiento de datos
+  table_calendar: ^3.0.0
+  google_sign_in: ^6.2.1
   # Otras dependencias que necesites
   
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +60,8 @@ dev_dependencies:
 flutter:
   assets:
   - assets/logo.png
+  - assets/facebook.png
+  - assets/google.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

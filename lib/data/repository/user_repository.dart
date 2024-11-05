@@ -5,7 +5,6 @@ class UserRepository {
   final AuthenticationService _authenticationService = AuthenticationService();
 
   Future<UserModel?> login(String email, String password) async {
-    // Llama al método de login del servicio de autenticación
     return _authenticationService.loginUser(email, password);
   }
 
@@ -15,5 +14,9 @@ class UserRepository {
 
   Future<void> logout() async {
     await _authenticationService.logoutUser();
+  }
+
+  Future<UserModel?> signInWithGoogle() async {
+    return _authenticationService.signInWithGoogle();
   }
 }

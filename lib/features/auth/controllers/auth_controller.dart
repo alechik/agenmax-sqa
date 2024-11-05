@@ -15,4 +15,8 @@ class AuthController {
   Future<void> logout() {
     return _userRepository.logout();
   }
+
+  Future<UserModel?> signInWithGoogle() {
+    return _userRepository.signInWithGoogle();
+  }
 }
