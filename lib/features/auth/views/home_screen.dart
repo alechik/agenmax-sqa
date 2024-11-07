@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'notification_screen.dart'; // Importa la pantalla de notificaciones
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         Text(
-                          '',
+                          'Sabir',  // Nombre del usuario
                           style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -97,7 +98,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _showCreateEventModal(context),
         child: Icon(Icons.add, color: Colors.white),
         backgroundColor: Colors.purple,
         shape: CircleBorder(),
@@ -117,12 +118,160 @@ class HomeScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(icon: Icon(Icons.calendar_today), onPressed: () {}),
-              IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
+              IconButton(
+                icon: Icon(Icons.calendar_today),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.notifications),
+                onPressed: () {
+                  // Navegar a la pantalla de notificaciones
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationScreen()),
+                  );
+                },
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void _showCreateEventModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Add New Event',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Event Name',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Event Description',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Date',
+                          border: OutlineInputBorder(),
+                          suffixIcon: Icon(Icons.calendar_today),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Start Time',
+                          border: OutlineInputBorder(),
+                          suffixIcon: Icon(Icons.access_time),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'End Time',
+                          border: OutlineInputBorder(),
+                          suffixIcon: Icon(Icons.access_time),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text("Reminds me"),
+                    Spacer(),
+                    Switch(value: true, onChanged: (bool value) {}),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Select Category',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 4.0,
+                  children: [
+                    _buildCategoryChip("Brainstorm", Colors.purple),
+                    _buildCategoryChip("Design", Colors.green),
+                    _buildCategoryChip("Add New", Colors.blue),
+                  ],
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurpleAccent,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    onPressed: () {
+                      // Acción para crear el evento
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Create Event',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildCategoryChip(String label, Color color) {
+    return Chip(
+      label: Text(label),
+      backgroundColor: color.withOpacity(0.2),
+      labelStyle: TextStyle(color: color),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
     );
   }
 }
